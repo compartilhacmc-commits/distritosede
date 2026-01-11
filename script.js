@@ -1,17 +1,17 @@
 // ===================================
 // CONFIGURAÇÃO DA PLANILHA (DUAS ABAS)
 // ===================================
-const SHEET_ID = '1r6NLcVkVLD5vp4UxPEa7TcreBpOd0qeNt-QREOG4Xr4';
+const SHEET_ID = '1RPf2bfQVoM1FqnyA-0P8uPTJ_PG4I2Ce6lXnk54ixfc';
 
-// ✅ CONFIGURAÇÃO DAS DUAS ABAS
+// ✅ CONFIGURAÇÃO DAS DUAS ABAS COM OS NOVOS LINKS
 const SHEETS = [
     {
-        name: 'PENDÊNCIAS ELDORADO',
-        url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('PENDÊNCIAS ELDORADO')}`
+        name: 'PENDÊNCIAS SEDE',
+        url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=278071504`
     },
     {
         name: 'RESOLVIDOS',
-        url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent('RESOLVIDOS')}`
+        url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=626867102`
     }
 ];
 
