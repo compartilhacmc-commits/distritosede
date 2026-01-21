@@ -45,7 +45,7 @@
                     <i class="fas fa-clipboard-list"></i>
                 </div>
                 <div class="card-info">
-                    <h3 class="card-title">Total de Registros</h3>
+                    <h3 class="card-title">Total Geral de Registros</h3>
                     <p class="card-value" id="totalPendencias">0</p>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <i class="fas fa-clock"></i>
                 </div>
                 <div class="card-info">
-                    <h3 class="card-title">Vencendo em 15 Dias</h3>
+                    <h3 class="card-title">Pendências Vencendo em 15 Dias</h3>
                     <p class="card-value" id="pendencias15">0</p>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <div class="card-info">
-                    <h3 class="card-title">Vencendo em 30 Dias</h3>
+                    <h3 class="card-title">Pendências Vencendo em 30 Dias</h3>
                     <p class="card-value" id="pendencias30">0</p>
                 </div>
             </div>
@@ -136,12 +136,16 @@
                     </div>
                 </div>
 
-                <!-- ✅ FILTRO POR MÊS -->
+                <!-- FILTRO POR MÊS -->
                 <div class="filter-box">
                     <label>Filtrar por Mês:</label>
-                    <select class="filter-select" id="filterMes" onchange="applyFilters()">
-                        <option value="">Todos os Meses</option>
-                    </select>
+                    <div class="multi-select" id="msMes">
+                        <button type="button" class="multi-select-btn" onclick="toggleMultiSelect('msMes')">
+                            <span class="multi-select-text" id="msMesText">Todos os Meses</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="multi-select-panel" id="msMesPanel"></div>
+                    </div>
                 </div>
             </div>
 
@@ -152,15 +156,24 @@
 
         <!-- Gráficos -->
         <div class="charts-container">
+            <!-- LINHA 1 -->
             <div class="chart-box">
-                <h3 class="chart-title">Registros por Unidade de Saúde</h3>
+                <h3 class="chart-title">Registros Geral de Pendências por Unidade de Saúde</h3>
                 <div class="chart-wrapper">
                     <canvas id="chartUnidades"></canvas>
                 </div>
             </div>
 
             <div class="chart-box">
-                <h3 class="chart-title">Registros por Especialidade</h3>
+                <h3 class="chart-title">Pendências Não Resolvidas por Unidade de Saúde</h3>
+                <div class="chart-wrapper">
+                    <canvas id="chartPendenciasNaoResolvidasUnidade"></canvas>
+                </div>
+            </div>
+
+            <!-- LINHA 2 -->
+            <div class="chart-box">
+                <h3 class="chart-title">Registros Geral de Pendências por Especialidade</h3>
                 <div class="chart-wrapper">
                     <canvas id="chartEspecialidades"></canvas>
                 </div>
@@ -173,15 +186,7 @@
                 </div>
             </div>
 
-            <!-- GRÁFICO DE PIZZA -->
-            <div class="chart-box">
-                <h3 class="chart-title">Distribuição Percentual por Status</h3>
-                <div class="chart-wrapper chart-wrapper-pizza">
-                    <canvas id="chartPizzaStatus"></canvas>
-                </div>
-            </div>
-
-            <!-- ✅ NOVO: PENDÊNCIAS POR PRESTADOR (VERTICAL) -->
+            <!-- LINHA 3 -->
             <div class="chart-box">
                 <h3 class="chart-title">Quantidade de Pendências por Prestador</h3>
                 <div class="chart-wrapper">
@@ -189,12 +194,33 @@
                 </div>
             </div>
 
-            <!-- ✅ NOVO: PENDÊNCIAS POR MÊS (VERTICAL) -->
             <div class="chart-box">
                 <h3 class="chart-title">Quantidade de Pendências por Mês</h3>
                 <div class="chart-wrapper">
                     <canvas id="chartPendenciasMes"></canvas>
                 </div>
+            </div>
+
+            <!-- LINHA 4 - PIZZA + EVOLUÇÃO TEMPORAL -->
+            <div class="chart-box chart-box-full">
+                <h3 class="chart-title">Distribuição por Status</h3>
+
+                <div class="charts-row-2">
+                    <div class="chart-half">
+                        <h4 class="chart-subtitle">Distribuição Percentual por Status</h4>
+                        <div class="chart-wrapper chart-wrapper-pizza">
+                            <canvas id="chartPizzaStatus"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-half">
+                        <h4 class="chart-subtitle">Evolução Temporal de Pendências</h4>
+                        <div class="chart-wrapper chart-wrapper-pizza">
+                            <canvas id="chartEvolucaoTemporal"></canvas>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -208,6 +234,19 @@
             <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="Pesquisar na tabela..." onkeyup="searchTable()">
+            </div>
+
+            <!-- ✅ SELETOR DE ITENS POR PÁGINA -->
+            <div class="pagination-controls">
+                <label for="itemsPerPage">Mostrar:</label>
+                <select id="itemsPerPage" onchange="changeItemsPerPage()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="-1">Todos</option>
+                </select>
+                <span>registros por página</span>
             </div>
 
             <div class="table-wrapper">
@@ -250,7 +289,7 @@
         <p>DIRETORIA DE REGULAÇÃO</p>
         <p>CENTRAL DE MARCAÇÃO DE CONSULTAS</p>
         <p>DISTRITO SANITÁRIO SEDE</p>
-        <p>Telefone 3198-6756 Marcadora Ariana</p>
+        <p>Telefone 3198-6758 Marcadora Ariana</p>
         <p class="footer-credits">Página Criada por Ana P. A. Silva Matr:201704/Assistente Adm. Diretoria de Regulação - Ceaps</p>
     </footer>
 
@@ -267,5 +306,4 @@
     <script src="script.js"></script>
 </body>
 </html>
-
 
