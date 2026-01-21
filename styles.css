@@ -279,28 +279,6 @@ body {
     font-size: 0.95rem;
 }
 
-.filter-select {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--azul-medio);
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--cinza-800);
-    background: var(--branco);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.filter-select:focus {
-    outline: none;
-    border-color: var(--azul-claro);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.filter-select:hover {
-    border-color: var(--azul-claro);
-}
-
 /* ===================================
    GRÁFICOS
 =================================== */
@@ -318,30 +296,56 @@ body {
     box-shadow: var(--sombra-md);
 }
 
+/* ✅ BLOCO FULL */
+.chart-box-full {
+    grid-column: 1 / -1;
+}
+
 .chart-title {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--azul-escuro);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     padding-bottom: 0.75rem;
     border-bottom: 2px solid var(--cinza-200);
 }
 
-/* ✅ CORREÇÃO: ALTURA AUMENTADA PARA GRÁFICOS HORIZONTAIS */
+/* ✅ SUBTÍTULO (novo) */
+.chart-subtitle{
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--cinza-800);
+    margin: 0.25rem 0 0.8rem;
+}
+
+/* ✅ NOVO LAYOUT: PIZZA + TOP STATUS LADO A LADO */
+.charts-row-2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.chart-half{
+    background: rgba(59,130,246,0.04);
+    border: 1px solid rgba(59,130,246,0.10);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+/* Alturas */
 .chart-wrapper {
     position: relative;
     height: 520px;
     min-height: 450px;
 }
 
-/* ✅ Pizza com altura própria (mais bonita com legenda ao lado) */
 .chart-wrapper-pizza {
     position: relative;
-    height: 450px;
-    min-height: 400px;
+    height: 420px;
+    min-height: 380px;
 }
 
-/* ✅ Status vertical: deixa um pouco mais alto para caber rótulos */
 .chart-wrapper-status {
     height: 460px;
     min-height: 380px;
@@ -354,13 +358,19 @@ body {
     }
 }
 
+@media (max-width: 900px){
+    .charts-row-2{
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .chart-wrapper {
         height: 400px;
     }
 
     .chart-wrapper-pizza {
-        height: 380px;
+        height: 360px;
     }
 
     .chart-wrapper-status {
@@ -369,45 +379,7 @@ body {
 }
 
 /* ===================================
-   CAIXA DE PESQUISA
-=================================== */
-.search-box {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--cinza-100);
-    padding: 0.75rem 1.25rem;
-    border-radius: 8px;
-    border: 2px solid var(--azul-medio);
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.search-box:focus-within {
-    border-color: var(--azul-claro);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.search-box i {
-    color: var(--azul-medio);
-    font-size: 1.1rem;
-}
-
-.search-box input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    font-size: 1rem;
-    color: var(--cinza-800);
-    outline: none;
-}
-
-.search-box input::placeholder {
-    color: var(--cinza-600);
-}
-
-/* ===================================
-   TABELA DE DADOS
+   ✅ NOVO ESTILO DE TABELA
 =================================== */
 .table-container {
     background: var(--branco);
@@ -417,61 +389,146 @@ body {
     margin-bottom: 2rem;
 }
 
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #ffffff;
+    padding: 0.65rem 1.1rem;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.search-box:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-box i {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: #1f2937;
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: #9ca3af;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--cinza-800);
+}
+
+.pagination-controls label {
+    font-weight: 600;
+}
+
+.pagination-controls select {
+    padding: 0.5rem 0.75rem;
+    border: 2px solid var(--azul-medio);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cinza-800);
+    background: var(--branco);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-controls select:hover {
+    border-color: var(--azul-claro);
+}
+
+.pagination-controls select:focus {
+    outline: none;
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
 .table-wrapper {
     overflow-x: auto;
     margin-top: 1rem;
-    border: 1px solid var(--cinza-300);
-    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    background: #ffffff;
 }
 
 .data-table thead {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: var(--branco);
+    background: #1e3a8a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .data-table th {
-    padding: 1rem 0.75rem;
+    padding: 0.95rem 0.85rem;
     text-align: left;
-    font-weight: 600;
+    font-weight: 700;
     white-space: nowrap;
-    font-size: 0.875rem;
-    letter-spacing: 0.5px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
     vertical-align: middle;
+    text-transform: uppercase;
+}
+
+.data-table th:last-child {
+    border-right: none;
 }
 
 .data-table tbody tr {
-    border-bottom: 1px solid var(--cinza-300);
+    border-bottom: 1px solid #e5e7eb;
     transition: all 0.2s ease;
 }
 
 .data-table tbody tr:hover {
-    background: #e3f2fd;
+    background: #f0f9ff;
 }
 
 .data-table tbody tr:nth-child(even) {
-    background: #fafbfc;
+    background: #f9fafb;
 }
 
 .data-table tbody tr:nth-child(even):hover {
-    background: #e3f2fd;
+    background: #f0f9ff;
 }
 
 .data-table td {
-    padding: 0.875rem 0.75rem;
-    color: var(--cinza-800);
-    border: 1px solid var(--cinza-300);
+    padding: 0.8rem 0.85rem;
+    color: #374151;
+    border-right: 1px solid #e5e7eb;
     vertical-align: middle;
     white-space: nowrap;
+    font-size: 0.875rem;
 }
 
-/* ✅ DESTAQUE AMARELO PARA LINHAS VENCENDO EM 15 DIAS */
+.data-table td:last-child {
+    border-right: none;
+}
+
 .data-table tbody tr.row-vencendo-15 {
     background-color: #fef3c7 !important;
     font-weight: 600;
@@ -484,18 +541,20 @@ body {
 .loading-message {
     text-align: center;
     padding: 3rem !important;
-    font-size: 1.1rem;
-    color: var(--azul-medio);
+    font-size: 1.05rem;
+    color: #2563eb;
     border: none !important;
+    font-weight: 500;
 }
 
 .table-footer {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 2px solid var(--cinza-200);
-    color: var(--cinza-600);
-    font-size: 0.9rem;
+    border-top: 2px solid #e5e7eb;
+    color: #6b7280;
+    font-size: 0.875rem;
     font-weight: 600;
+    text-align: left;
 }
 
 /* ===================================
@@ -724,3 +783,4 @@ html {
 
 .ms-item input{ width: 16px; height: 16px; }
 .ms-item span{ font-size: 0.95rem; color: var(--cinza-800); }
+
