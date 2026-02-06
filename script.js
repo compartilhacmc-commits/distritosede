@@ -27,7 +27,6 @@ const SHEETS = [
   }
 ];
 
-
 // ===================================
 // VARIÁVEIS GLOBAIS
 // ===================================
@@ -1378,3 +1377,4 @@ function downloadExcel() {
   const hoje = new Date().toISOString().split('T')[0];
   XLSX.writeFile(wb, `Dados_Eldorado_${hoje}.xlsx`);
 }
+
