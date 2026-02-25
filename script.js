@@ -9,19 +9,20 @@ function gvizCsvUrl(sheetId, gid) {
 // ===================================
 // CONFIGURAÇÃO DA PLANILHA (DUAS ABAS)
 // ===================================
-const SHEET_ID = '1r6NLcVkVLD5vp4UxPEa7TcreBpOd0qeNt-QREOG4Xr4';
+// PLANILHA "SEDE"
+const SHEET_ID = '1RPf2bfQVoM1FqnyA-0P8uPTJ_PG4I2Ce6lXnk54ixfc';
 
 const SHEETS = [
   {
-    name: 'PENDÊNCIAS ELDORADO',
+    name: 'PENDÊNCIAS SEDE',
     url: gvizCsvUrl(SHEET_ID, '278071504'),
-    distrito: 'ELDORADO',
+    distrito: 'SEDE',
     tipo: 'PENDENTE'
   },
   {
-    name: 'RESOLVIDOS ELDORADO',
-    url: gvizCsvUrl(SHEET_ID, '2142054254'),
-    distrito: 'ELDORADO',
+    name: 'RESOLVIDOS SEDE',
+    url: gvizCsvUrl(SHEET_ID, '626867102'),
+    distrito: 'SEDE',
     tipo: 'RESOLVIDO'
   }
 ];
@@ -1510,4 +1511,5 @@ function downloadExcel() {
   const hoje = new Date().toISOString().split('T')[0];
   XLSX.writeFile(wb, `Dados_Eldorado_${hoje}.xlsx`);
 }
+
 
